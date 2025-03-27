@@ -31,15 +31,23 @@ const PostDetails = () => {
   if (!post) return <h2>Loading...</h2>;
 
   return (
-    <div>
+    <div className="post-details-container">
       <h2>{post.title}</h2>
       <p>{post.content}</p>
-      <button onClick={handleLike}>{post.is_liked ? 'Unlike' : 'Like'}</button>
+
+      <button onClick={handleLike} className="like-btn">
+        {post.is_liked ? 'Unlike' : 'Like'}
+      </button>
+
       <h3>Comments:</h3>
       <CommentList postId={post.id} />
-      {comments.map((comment) => (
-        <p key={comment.id}>{comment.text}</p>
-      ))}
+      <div className="comments-section">
+        {comments.map((comment) => (
+          <p key={comment.id} className="comment-text">
+            {comment.text}
+          </p>
+        ))}
+      </div>
     </div>
   );
 };
